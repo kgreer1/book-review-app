@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-blog-post-editor',
@@ -7,22 +7,34 @@ import { FormBuilder, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./blog-post-editor.component.css']
 })
 export class BlogPostEditorComponent implements OnInit {
-
-  constructor(private fb: FormBuilder) { }
-
-  blogForm = this.fb.group({
-    postDate: [''],
-    postAuthor: [''],
-    postTitle: [''],
-    postContent: [''],
-  });
-
-  ngOnInit(): void {
+  blogForm: FormGroup;
+  example = { postDate: "", postAuthor: "", postTitle: "", postContent: "" };
+  formName:string = 'Submit New Blog Post';
+  resetButton = 'Reset Form';
+  submitButton = 'Submit';
+  
+  constructor(builder: FormBuilder) {
+    this.blogForm = builder.group({
+      postDate: [""],
+      postAuthor: [""],
+      postTitle: [""],
+      postContent: [""]
+    });
   }
 
-  onSubmit() {
-    console.log(this.blogForm.value);
-    //console.log("Post Date: " + this.blogForm.controls['postDate'].value);
+  addPost() {
+    console.log('Form submitted.');
+  }
+
+  resetForm() {
+    postDate: "";
+    postAuthor: "";
+    postTitle: "";
+    postContent: "";
+    console.log('Form reset.');
+  }
+
+  ngOnInit(): void {
   }
 
 }

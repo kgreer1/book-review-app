@@ -1,3 +1,8 @@
+.submitFormContainer {
+    padding: 5px 10px 5px 10px;
+    margin: 20px 10px;
+    width: 95%;
+}
 label {
     font-weight: bold;
 }
@@ -20,11 +25,12 @@ textarea:focus {
 #post-content {
     height: 200px;
 }
-button[type=submit] {
+button[type=submit], 
+button[type=reset] {
     background-color: #008CBA;
     color: white;
     padding: 16px 20px;
-    margin: 8px 0;
+    margin: 10px 0px;
     border: none;
     cursor: pointer;
     width: 100%;
@@ -32,4 +38,9 @@ button[type=submit] {
 }
 button[type=submit]:hover {
     opacity: 1;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }

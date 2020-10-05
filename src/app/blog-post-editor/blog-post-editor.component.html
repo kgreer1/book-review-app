@@ -1,21 +1,27 @@
-<form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+<div class="submitFormContainer">
+<h3>{{ formName }}</h3>
+<hr/>
+<form [formGroup]="blogForm" (ngSubmit)="addPost()">
     <div class="form-group">
-        <label for="post-date">Post Date:</label>
-        <input type="date" id="post-date" formControlName="postDate" required>
+        <label for="postDate">Post Date:</label>
+        <input name="postDate" type="date" id="postDate" formControlName="postDate" [(ngModel)]="example.postDate">
+
+        <label for="postAuthor">Post Author:</label>
+        <input name="postAuthor" type="text" id="postAuthor" formControlName="postAuthor" [(ngModel)]="example.postAuthor">
+
+        <label for="postTitle">Post Title:</label>
+        <input name="postTitle" type="text" id="postTitle" formControlName="postTitle" [(ngModel)]="example.postTitle">
+    
+        <label for="postContent">Post Content:</label>
+        <textarea name="postContent" id="postContent" formControlName="postContent" [(ngModel)]="example.postContent"></textarea>
     </div>
-    <div class="form-group">
-        <label for="post-author">Post Author:</label>
-        <input type="text" id="post-author" formControlName="postAuthor">
-    </div>
-    <div class="form-group">
-        <label for="post-title">Post Title:</label>
-        <input type="text" id="post-title" formControlName="postTitle">
-    </div>
-    <div class="form-group">
-        <label for="post-content">Post Content:</label>
-        <textarea id="post-content" formControlName="postContent"></textarea>
-    </div>
-    <div class="form-group">
-        <button type="submit" [disabled]="!blogForm.valid">Submit</button>
+    <div>
+        <button type="reset" [innerText]="resetButton" (click)="resetForm()"></button>
+        <button type="submit" [innerText]="submitButton" [disabled]="!blogForm.valid"></button>
     </div>
 </form>
+<h4>Preview Post</h4>
+<p>Date: {{example.postDate}}</p>
+<p>Author: {{example.postAuthor}}</p>
+<p>Title: {{example.postTitle}}</p>
+</div>
