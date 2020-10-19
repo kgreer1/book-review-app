@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
+import { NewsService } from '../news.service';
 
 @Component({
   selector: 'app-blog-post-editor',
@@ -8,12 +9,16 @@ import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 })
 export class BlogPostEditorComponent implements OnInit {
   blogForm: FormGroup;
-  example = { postDate: "", postAuthor: "", postTitle: "", postContent: "" };
-  formName:string = 'Submit New Blog Post';
+  formName:string = 'Submit A News Post';
   resetButton = 'Reset Form';
   submitButton = 'Submit';
+
+  @Input() postDate:string;
+  @Input() postAuthor:string;
+  @Input() postTitle:string;
+  @Input() postContent:string;
   
-  constructor(builder: FormBuilder) {
+  constructor(private _myService: NewsService, builder: FormBuilder) {
     this.blogForm = builder.group({
       postDate: [""],
       postAuthor: [""],
@@ -23,7 +28,8 @@ export class BlogPostEditorComponent implements OnInit {
   }
 
   addPost() {
-    console.log('Form submitted.');
+    this._myService.addNewsPost(this.postDate, this.postAuthor, this.postTitle, this.postContent);
+    console.log('Post submitted.');
   }
 
   resetForm() {

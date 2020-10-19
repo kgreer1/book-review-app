@@ -4,24 +4,20 @@
 <form [formGroup]="blogForm" (ngSubmit)="addPost()">
     <div class="form-group">
         <label for="postDate">Post Date:</label>
-        <input name="postDate" type="date" id="postDate" formControlName="postDate" [(ngModel)]="example.postDate">
+        <input name="postDate" type="date" id="postDate" formControlName="postDate" [(ngModel)]="postDate">
 
         <label for="postAuthor">Post Author:</label>
-        <input name="postAuthor" type="text" id="postAuthor" formControlName="postAuthor" [(ngModel)]="example.postAuthor">
+        <input name="postAuthor" type="text" id="postAuthor" formControlName="postAuthor" [(ngModel)]="postAuthor">
 
         <label for="postTitle">Post Title:</label>
-        <input name="postTitle" type="text" id="postTitle" formControlName="postTitle" [(ngModel)]="example.postTitle">
+        <input name="postTitle" type="text" id="postTitle" formControlName="postTitle" [(ngModel)]="postTitle">
     
         <label for="postContent">Post Content:</label>
-        <textarea name="postContent" id="postContent" formControlName="postContent" [(ngModel)]="example.postContent"></textarea>
+        <textarea name="postContent" id="postContent" formControlName="postContent" [(ngModel)]="postContent"></textarea>
     </div>
     <div>
         <button type="reset" [innerText]="resetButton" (click)="resetForm()"></button>
         <button type="submit" [innerText]="submitButton" [disabled]="!blogForm.valid"></button>
     </div>
 </form>
-<h4>Preview Post</h4>
-<p>Date: {{example.postDate}}</p>
-<p>Author: {{example.postAuthor}}</p>
-<p>Title: {{example.postTitle}}</p>
 </div>
