@@ -12,3 +12,9 @@ hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
 }
+html, body { 
+    height: 100%; 
+}
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+}

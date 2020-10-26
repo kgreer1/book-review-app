@@ -3,7 +3,8 @@
         <h3>{{news.postTitle}}</h3>
         <p>{{news.postDate}} | {{news.postAuthor}}</p>
         <p>{{news.postContent}}</p>
-        <button type="submit">Continue Reading</button>
+        <p>news id: {{news._id}}</p>
+        <button type="submit" (click)="onDelete(news._id)">Delete</button>
     </div>
 </div>
 

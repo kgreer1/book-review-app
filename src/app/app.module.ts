@@ -6,6 +6,11 @@ import { BlogPostEditorComponent } from './blog-post-editor/blog-post-editor.com
 import { BlogPostViewerComponent } from './blog-post-viewer/blog-post-viewer.component';
 import { NewsService } from './news.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [NewsService],
   bootstrap: [AppComponent]

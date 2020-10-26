@@ -31,4 +31,8 @@ export class BlogPostViewerComponent implements OnInit {
       () => console.log('finished loading')
     );
   }
+
+  onDelete(newsId:string) {
+    this._myService.deleteNews(newsId);
+  }
 }

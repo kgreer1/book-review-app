@@ -1,5 +1,22 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1>Book App</h1>
+        <span class="menu-spacer"></span>
+        <div>
+            <a mat-button> My Bookshelf </a>
+            <a mat-button> Book Reviews </a>
+            <a mat-button> Discussion Board </a>
+            <a mat-button> Community News </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
 <div class="container">
     <h1>{{ title | uppercase }}</h1>
     <app-blog-post-viewer></app-blog-post-viewer>
     <app-blog-post-editor></app-blog-post-editor>
 </div>
+  

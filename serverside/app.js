@@ -1,39 +1,18 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const newsPost = require('./models/newsPost');
+
+mongoose.connect('mongodb://localhost:27017/bookapp', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {console.log('db connected');})
+    .catch(() => {console.log('db connection error');});
 
 app.use((req,res,next) => {
-    console.log('This line is always called.');
     res.setHeader('Access-Control-Allow-Origin', '*'); //can connect from any host
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS'); //allowable methods
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS, DELETE'); //allowable methods
     res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
-    next();
-});
-
-app.get('/news', (req,res,next) => {
-    const news = [
-        {id:"1", 
-        postTitle:"August New Releases", 
-        postDate:"August 5, 2020",
-        postAuthor: "Jill Doe", 
-        postContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem donec massa sapien faucibus et molestie. Non blandit massa enim nec. Iaculis urna id volutpat lacus laoreet non curabitur."},
-        {id:"2", 
-        postTitle:"Author Interview: Joon Oluchi Lee", 
-        postDate:"August 12, 2020",
-        postAuthor: "Jae Hardy", 
-        postContent: "Purus gravida quis blandit turpis. Purus sit amet luctus venenatis lectus magna fringilla urna. At ultrices mi tempus imperdiet nulla malesuada. Faucibus turpis in eu mi bibendum neque egestas. Ultrices tincidunt arcu non sodales neque. Pellentesque nec nam aliquam sem. Sit amet consectetur adipiscing elit pellentesque habitant morbi. Est ante in nibh mauris. Aliquam ultrices sagittis orci a."},
-        {id:"3", 
-        postTitle:"An Adventure in Children's Books", 
-        postDate:"August 28, 2020",
-        postAuthor: "Sara Little", 
-        postContent: "Faucibus interdum posuere lorem ipsum dolor sit. Auctor augue mauris augue neque. In aliquam sem fringilla ut morbi tincidunt augue interdum. Suspendisse ultrices gravida dictum fusce ut placerat orci nulla. Dui ut ornare lectus sit amet est placerat in. Vitae sapien pellentesque habitant morbi tristique."},
-        {id:"4", 
-        postTitle:"October New Releases", 
-        postDate:"October 4, 2020",
-        postAuthor: "Jill Doe", 
-        postContent: "Cursus turpis massa tincidunt dui ut. Tincidunt dui ut ornare lectus sit amet. Sed nisi lacus sed viverra tellus in hac habitasse platea. Sed odio morbi quis commodo odio aenean. Amet est placerat in egestas erat imperdiet sed euismod nisi. Neque convallis a cras semper."},
-    ];
-    res.json(news); //send the array as the response
     next();
 });
 
@@ -43,12 +22,35 @@ app.use(bodyParser.urlencoded({extended:false}));
 //parse application/json
 app.use(bodyParser.json());
 
-//serve incoming post requests to /news
+app.get('/news', (req,res,next) => {
+    newsPost.find()
+    .then(data => res.status(200).json(data))
+    .catch(err => {
+        console.log('Error: $(err)');
+        res.status(500).json(err);
+    });
+});
+
 app.post('/news', (req,res,next) => {
-    const news = req.body;
-    console.log("New post submitted: " + news.postTitle);
-    //send acknowledgement back to caller
-    res.status(201).json('Post successful');
+    //create newsPost variable and save request's fields to db
+    const post = new newsPost ({
+        postTitle: req.body.postTitle,
+        postDate: req.body.postDate,
+        postAuthor: req.body.postAuthor,
+        postContent: req.body.postContent
+    });
+    post.save()
+    //in case of success
+    .then(() => { console.log('post saved to db'); })
+    //in case of error
+    .catch(() => { console.log('error: ' + err); });
+});
+
+app.delete('/news/:id', (req,res,next) => {
+    newsPost.deleteOne({_id: req.params.id }).then(result => {
+        console.log(result);
+        res.status(200).json('deleted!');
+    });
 });
 
 
