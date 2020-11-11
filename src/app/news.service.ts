@@ -18,9 +18,18 @@ export class NewsService {
 
     //uses http.post() to post data
     addNewsPost(postDate:string, postAuthor:string, postTitle:string, postContent:string) {
-        this.http.post('http://localhost:8000/news', {postDate, postAuthor, postTitle, postContent})
+        this.http.post('http://localhost:8000/news/add-post', {postDate, postAuthor, postTitle, postContent})
         .subscribe((responseData) => {
             console.log(responseData);
+        });
+    }
+
+    //update data
+    updateNewsPost(postID:string, postDate:string, postAuthor:string, postTitle:string, postContent:string) {
+        this.http.put('http://localhost:8000/news/edit-post/' 
+        + postID, {postDate, postAuthor, postTitle, postContent})
+        .subscribe(() => {
+            console.log('Updated: ' + postID);
         });
     }
 

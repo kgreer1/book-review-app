@@ -11,12 +11,33 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+const appRoutes: Routes = [
+  {
+    path:'', //default component
+    component: BlogPostViewerComponent },
+  {
+    path:'news', //view blog/news
+    component: BlogPostViewerComponent },
+  {
+    path:'news/add-post', //add blog/news post
+    component: BlogPostEditorComponent },
+  {
+    path:'news/edit-post/:_id', //edit blog/news post
+    component: BlogPostEditorComponent },
+  {
+    path: '**', //when path cannot be found
+    component: NotFoundComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogPostEditorComponent,
-    BlogPostViewerComponent
+    BlogPostViewerComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatListModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [NewsService],
   bootstrap: [AppComponent]

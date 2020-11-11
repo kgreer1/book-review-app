@@ -22,7 +22,8 @@ export class BlogPostViewerComponent implements OnInit {
   ngOnInit(): void {
     this.getNews();
   }
-
+  
+  //method called OnInit
   getNews() {
     this._myService.getNews().subscribe(
       //read data and assign to public variable news

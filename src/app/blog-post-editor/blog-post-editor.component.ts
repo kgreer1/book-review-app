@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { NewsService } from '../news.service';
+import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-blog-post-editor',
@@ -17,8 +19,13 @@ export class BlogPostEditorComponent implements OnInit {
   @Input() postAuthor:string;
   @Input() postTitle:string;
   @Input() postContent:string;
+
+  public mode ='add'; //default mode
+  private id: string; //postID
   
-  constructor(private _myService: NewsService, builder: FormBuilder) {
+  constructor(private _myService: NewsService, builder: FormBuilder, 
+    private router:Router, public route:ActivatedRoute) {
+
     this.blogForm = builder.group({
       postDate: [""],
       postAuthor: [""],
@@ -28,8 +35,13 @@ export class BlogPostEditorComponent implements OnInit {
   }
 
   addPost() {
-    this._myService.addNewsPost(this.postDate, this.postAuthor, this.postTitle, this.postContent);
-    console.log('Post submitted.');
+    if(this.mode == 'add')
+      this._myService.addNewsPost(this.postDate, this.postAuthor, this.postTitle, this.postContent);
+      console.log('New post submitted.');
+      if(this.mode == 'edit')
+      this._myService.updateNewsPost(this.id, this.postDate, this.postAuthor, this.postTitle, this.postContent);
+      console.log('Post updated.');
+    this.router.navigate(['/news']);
   }
 
   resetForm() {
@@ -41,6 +53,15 @@ export class BlogPostEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap:ParamMap) => {
+      if(paramMap.has('_id')) { 
+        this.mode = 'edit';
+        this.id = paramMap.get('_id');}
+      else {
+        this.mode = 'add';
+        this.id = null;
+      }
+    });
   }
 
 }
