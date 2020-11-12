@@ -27,13 +27,13 @@ textarea:focus {
 }
 button[type=submit], 
 button[type=reset] {
-    background-color: #008CBA;
+    background-color: #3f51b5;
     color: white;
-    padding: 16px 20px;
-    margin: 10px 0px;
+    padding: 15px 15px;
+    margin: 10px 5px;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 40%;
     opacity: 0.9;
 }
 button[type=submit]:hover {
@@ -43,4 +43,8 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+h2 {
+    margin: 20px;
+    color: #3d4849;
 }

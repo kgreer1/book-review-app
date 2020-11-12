@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 //retrieve all news posts
 app.get('/news', (req,res,next) => {
-    newsPost.find()
+    newsPost.find().sort('-postDate')
     .then(data => res.status(200).json(data))
     .catch(err => {
         console.log('Error: $(err)');

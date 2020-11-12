@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NewsService } from '../news.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-blog-post-editor',
@@ -56,7 +55,8 @@ export class BlogPostEditorComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap:ParamMap) => {
       if(paramMap.has('_id')) { 
         this.mode = 'edit';
-        this.id = paramMap.get('_id');}
+        this.id = paramMap.get('_id');
+      }
       else {
         this.mode = 'add';
         this.id = null;

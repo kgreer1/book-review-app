@@ -6,7 +6,7 @@
     width: 95%;
 }
 button[type=submit] {
-    background-color: #008CBA;
+    background-color: #3f51b5;
     color: white;
     padding: 10px 15px;
     margin: 10px 5px;
@@ -17,4 +17,14 @@ button[type=submit] {
 }
 button[type=submit]:hover {
     opacity: 1;
+}
+h2 {
+    margin: 20px;
+    color: #3d4849;
+}
+a {
+    text-decoration: none;
+    font-size: 100%;
+    font-weight: bold;
+    color: #3f51b5;
 }

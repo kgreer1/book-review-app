@@ -1,23 +1,41 @@
-<mat-toolbar>
-    <mat-toolbar-row>
-        <button mat-icon-button>
-            <mat-icon>menu</mat-icon>
-        </button>
-        <h1>BookApp</h1>
+<div>
+    <mat-toolbar color="primary">
+        <div fxShow="true" fxHide.gt-sm="true">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+    
+        <a mat-button class="appName" routerLink="/">
+            <span>BookApp</span>
+        </a>
+
         <span class="menu-spacer"></span>
-        <div>
+
+        <div fxShow="true" fxHide.lt-md="true">
             <a mat-button routerLink="/my-bookshelf">My Bookshelf</a>
             <a mat-button routerLink="/book-reviews">Book Reviews</a>
             <a mat-button routerLink="/discussion-board">Discussion Board</a>
             <a mat-button routerLink="/news">Community News</a>
         </div>
-    </mat-toolbar-row>
-</mat-toolbar>
+    </mat-toolbar>
 
-<div class="container">
-    <!--<app-navigation-menu></app-navigation-menu>
-    <app-blog-post-viewer></app-blog-post-viewer>
-    <app-blog-post-editor></app-blog-post-editor>-->
-    <router-outlet></router-outlet>
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+            <div fxLayout="column">
+                <a mat-button routerLink="/my-bookshelf">My Bookshelf</a>
+                <a mat-button routerLink="/book-reviews">Book Reviews</a>
+                <a mat-button routerLink="/discussion-board">Discussion Board</a>
+                <a mat-button routerLink="/news">Community News</a>
+            </div>
+        </mat-sidenav>
+
+        <div class="container">
+            <!--<app-navigation-menu></app-navigation-menu>
+            <app-blog-post-viewer></app-blog-post-viewer>
+            <app-blog-post-editor></app-blog-post-editor>-->
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-container>
 </div>
   

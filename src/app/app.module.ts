@@ -10,7 +10,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -19,7 +21,7 @@ const appRoutes: Routes = [
     path:'', //default component
     component: BlogPostViewerComponent },
   {
-    path:'news', //view blog/news
+    path:'news', //view all blog/news posts
     component: BlogPostViewerComponent },
   {
     path:'news/add-post', //add blog/news post
@@ -48,7 +50,9 @@ const appRoutes: Routes = [
     MatIconModule,
     MatListModule,
     MatButtonModule,
+    MatSidenavModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [NewsService],

@@ -1,5 +1,7 @@
-<div>
+<div style="text-align:center;">
     <h2>COMMUNITY NEWS</h2>
+    <a href="/news/add-post">Add a News Post</a>
+    <hr/>
     <div class="postContainer" *ngFor="let news of news let i = index">
         <h3>{{news.postTitle}}</h3>
         <p>{{news.postDate}} | {{news.postAuthor}}</p>
@@ -8,5 +10,6 @@
         <button type="submit" [routerLink]="['/news/edit-post', news._id]">Edit</button>
         <button type="submit" (click)="onDelete(news._id)">Delete</button>
     </div>
+    
 </div>
 
