@@ -21,6 +21,7 @@ export class BlogPostEditorComponent implements OnInit {
 
   public mode ='add'; //default mode
   private id: string; //postID
+  postData: any;
   
   constructor(private _myService: NewsService, builder: FormBuilder, 
     private router:Router, public route:ActivatedRoute) {
@@ -56,11 +57,23 @@ export class BlogPostEditorComponent implements OnInit {
       if(paramMap.has('_id')) { 
         this.mode = 'edit';
         this.id = paramMap.get('_id');
+        this.loadPost(this.id);
       }
       else {
         this.mode = 'add';
         this.id = null;
       }
+    });
+  }
+
+  //load post values to form
+  loadPost(postId:string) {
+    this._myService.getNewsPost(postId).subscribe(data => {
+      this.postData = data;
+      this.blogForm.controls['postDate'].setValue(this.postData['postDate']);
+      this.blogForm.controls['postAuthor'].setValue(this.postData['postAuthor']);
+      this.blogForm.controls['postTitle'].setValue(this.postData['postTitle']);
+      this.blogForm.controls['postContent'].setValue(this.postData['postContent']);
     });
   }
 

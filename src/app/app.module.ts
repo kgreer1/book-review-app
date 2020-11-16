@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogPostEditorComponent } from './blog-post-editor/blog-post-editor.component';
 import { BlogPostViewerComponent } from './blog-post-viewer/blog-post-viewer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { NewsService } from './news.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -14,7 +15,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   {

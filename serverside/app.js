@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const newsPost = require('./models/newsPost');
 const { hasLifecycleHook } = require('@angular/compiler/src/lifecycle_reflector');
-const connectionString = 'url';
+const connectionString = '<insert url>';
 
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {console.log('Mongo db connected');})
@@ -35,6 +35,16 @@ app.get('/news', (req,res,next) => {
 
 //retrieve a single news post
 app.get('/news/:id', (req,res,next) => {
+    newsPost.findById(req.params.id)
+    .then(data => res.status(200).json(data))
+    .catch(err => {
+        console.log('Error: $(err)');
+        res.status(500).json(err);
+    });
+});
+
+//retrieve a single news post for editing
+app.get('/news/edit-post/:id', (req,res,next) => {
     newsPost.findById(req.params.id)
     .then(data => res.status(200).json(data))
     .catch(err => {

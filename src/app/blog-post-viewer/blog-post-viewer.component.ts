@@ -35,5 +35,7 @@ export class BlogPostViewerComponent implements OnInit {
 
   onDelete(newsId:string) {
     this._myService.deleteNews(newsId);
+    location.reload();
   }
+
 }

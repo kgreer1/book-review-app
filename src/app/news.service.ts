@@ -16,6 +16,11 @@ export class NewsService {
         return this.http.get('http://localhost:8000/news');
     }
 
+    getNewsPost(postID:string) {
+        return this.http.get('http://localhost:8000/news/edit-post/' 
+        + postID);
+    }
+
     //uses http.post() to post data
     addNewsPost(postDate:string, postAuthor:string, postTitle:string, postContent:string) {
         this.http.post('http://localhost:8000/news/add-post', {postDate, postAuthor, postTitle, postContent})
