@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const newsPost = require('./models/newsPost');
 const { hasLifecycleHook } = require('@angular/compiler/src/lifecycle_reflector');
-const connectionString = '<insert url>';
+const connectionString = 'url';
 
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {console.log('Mongo db connected');})
